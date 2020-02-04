@@ -52,9 +52,9 @@ function combine(name, collections) {
     }
   });
 
-  result.item = collections.map(toFolder).filter(item => !!item);
   result.variable = collections
-    .reduce((result, collection) => result.concat(collection.variable || []), []);
+    .reduceRight((result, collection) => result.concat(collection.variable || []), []);
+  result.item = collections.map(toFolder).filter(item => !!item);
 
   return result.toJSON();
 }
